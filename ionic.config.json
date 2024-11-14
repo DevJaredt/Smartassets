@@ -1,0 +1,7 @@
+{
+  "name": "Smartasstes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
