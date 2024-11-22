@@ -1,0 +1,18 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { IAsset } from '../../interfaces/IAssests';
+
+@Component({
+  selector: 'app-card',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.scss'],
+})
+export class CardComponent  implements OnInit {
+  @Input() asset!: IAsset; 
+  @Input() title!: string;
+  @Input() subtitle: string = '';
+  @Input() content: string = '';
+  constructor() { }
+
+  ngOnInit() {}
+
+}
