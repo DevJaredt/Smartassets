@@ -1,22 +1,59 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './modules/shared/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: 'principal',
+    loadChildren: () =>
+      import('./pages/principal/principal.module').then(
+        (m) => m.PrincipalPageModule
+      ),
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
+    canActivate: [AuthGuard],
   },
+  {
+    path: 'profile',
+    loadChildren: () =>
+      import('./pages/profile/profile.module').then((m) => m.ProfilePageModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'register',
+    loadChildren: () =>
+      import('./pages/register/register.module').then(
+        (m) => m.RegisterPageModule
+      ),
+  },
+  {
+    path: 'sign-in',
+    loadChildren: () =>
+      import('./pages/sign-in/sign-in.module').then((m) => m.SignInPageModule),
+  },
+  {
+    path: 'assests',
+    loadChildren: () => import('./pages/assests/assests.module').then( m => m.AssestsPageModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'animation',
+    pathMatch: 'full',
+  },
+  {
+    path: 'animation',
+    loadChildren: () => import('./pages/animation/animation.module').then( m => m.AnimationPageModule)
+  },
+
+
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
