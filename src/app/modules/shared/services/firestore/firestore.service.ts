@@ -89,4 +89,15 @@ export class FirestoreService {
       throw new Error(`Error deleting collection: ${collection}, for documentId: ${documentId}`);
     }
   }
+
+  public async updateProductState(productId: string, state: boolean): Promise<void>{
+    try {
+      await this._ngFirestore
+      .collection('products')
+      .doc(productId)
+      .update({ state })
+    } catch(error) {
+      throw new Error(`Error updating state for product ${productId}: ${error}`)
+    }
+  }
 }
