@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Assests</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let asset of assets">
+        <app-card
+          [title]="asset.name"       
+          [subtitle]="'$' + asset.price" 
+          [content]="asset.location"     
+        >
+          <p>Status: {{ asset.state ? 'Lent out' : 'Available' }}</p> 
+        </app-card>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-content>
