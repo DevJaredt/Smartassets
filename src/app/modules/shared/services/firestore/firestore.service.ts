@@ -24,7 +24,7 @@ export class FirestoreService {
     }
   }
 
-  public getCollectionDocuments(collection: string): Observable<any[]> {
+  public getCollectionDocuments<T>(collection: string): Observable<T[]> {
     const collectionRef = this._ngFirestore.collection(collection);
 
     return collectionRef.snapshotChanges().pipe(
@@ -32,7 +32,7 @@ export class FirestoreService {
         snapshot.map((doc) => {
           const data = doc.payload.doc.data();
           const id = doc.payload.doc.id;
-          return { id, ...(data ?? {}) };
+          return { id, ...(data ?? {}) as T};
         })
       )
     );

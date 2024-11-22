@@ -11,7 +11,7 @@ export class AnimationPage implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this._navCtrl.navigateForward('/sign-in');
+      this._navCtrl.navigateForward('/principal');
     }, 3000);
   }
 }

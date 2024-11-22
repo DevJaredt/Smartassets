@@ -10,37 +10,32 @@ import { ToastService } from 'src/app/modules/shared/services/toast/toast.servic
   templateUrl: './assests.page.html',
   styleUrls: ['./assests.page.scss'],
 })
-export class AssestsPage implements OnInit {
-protected assets!: IAsset[];
+  export class AssestsPage implements OnInit {
+  protected assets!: IAsset[];
 
-  constructor(private readonly _authSrv: AuthService,
-    private readonly _firestoreSrv: FirestoreService,
-    private readonly _loadingSrv: LoadingService,
-    private readonly _toastSrv: ToastService
-  ) { }
+    constructor(private readonly _authSrv: AuthService,
+      private readonly _firestoreSrv: FirestoreService,
+      private readonly _loadingSrv: LoadingService,
+      private readonly _toastSrv: ToastService
+    ) { }
 
-  ngOnInit() {
-    this.loadProducts();
-  }
+    ngOnInit() {
+      this.loadProducts();
+    }
 
-  protected async loadProducts() {
-    try {
-      const userId = await this._authSrv.getAuthUserId();
-      await this._firestoreSrv.getCollectionDocuments('products').subscribe(
-        (products) => {
-          this.assets = products.map((product: any) => ({
-            id: product.id,
-            name: product.name,
-            image: product.image,
-            price: product.price,
-            location: product.location,
-            contCode: product.contCode,
-            state: product.state,
-          }))
-        }
-      )
-    } catch (error) {
-      console.error('error to load', error)
+    protected async loadProducts() {
+      try {
+        const userId = await this._authSrv.getAuthUserId();
+        this._firestoreSrv.getCollectionDocuments<IAsset>('products').subscribe(
+          (products) => { 
+            this.assets = products;
+          },
+          (error) => {
+            console.error('Error loading products:', error);
+          }
+        );
+      } catch (error) {
+        console.error('error to load', error)
+      }
     }
   }
-}
