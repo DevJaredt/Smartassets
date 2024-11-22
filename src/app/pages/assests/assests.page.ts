@@ -13,6 +13,7 @@ import { ToastService } from 'src/app/modules/shared/services/toast/toast.servic
   export class AssestsPage implements OnInit {
   protected assets!: IAsset[];
 
+
     constructor(private readonly _authSrv: AuthService,
       private readonly _firestoreSrv: FirestoreService,
       private readonly _loadingSrv: LoadingService,
@@ -23,7 +24,7 @@ import { ToastService } from 'src/app/modules/shared/services/toast/toast.servic
       this.loadProducts();
     }
 
-    protected async loadProducts() {
+    public async loadProducts() {
       try {
         const userId = await this._authSrv.getAuthUserId();
         this._firestoreSrv.getCollectionDocuments<IAsset>('products').subscribe(
@@ -35,7 +36,20 @@ import { ToastService } from 'src/app/modules/shared/services/toast/toast.servic
           }
         );
       } catch (error) {
-        console.error('error to load', error)
+        console.error('error to load', error);
+      }
+    }
+
+    public async onLoanRequest(asset: IAsset){
+      if(!asset.state) {
+        try {
+          await this._firestoreSrv.updateProductState(asset.id, true);
+          this._toastSrv.showToast('Product has been marked as lent out.');
+        } catch (error) {
+          this._toastSrv.showToast('Failed to update product status.');
+        }
+      } else {
+        this._toastSrv.showToast('Product is already lent out.');
       }
     }
   }
