@@ -1,3 +1,25 @@
-<ion-item [button]="isClickable" (click)="onItemClick()" lines="full">
-  <ion-label>{{ label }}</ion-label>
-</ion-item>
+<ion-list>
+  <ion-item *ngFor="let asset of assets" lines="full">
+    <ion-label>
+      <h2>{{ asset.name }}</h2>  
+      <p>{{ asset.location }}</p> 
+      <p>Status: {{ asset.state ? 'Lent out' : 'Available' }}</p> 
+      <p>{{ '$' + asset.price }}</p> 
+    </ion-label>
+    <app-button
+    *ngIf="!asset.state" 
+    label="Request Loan"
+    [disabled]="asset.state" 
+    color="primary"
+    expand="full"
+    shape="round"
+    fill="solid"
+    slot="start"
+    (loanRequest)="onLoanRequest(asset)"
+  ></app-button>
+  </ion-item>
+  
+</ion-list>
+  <ion-item [button]="isClickable" (click)="onItemClick()" lines="full">
+    <ion-label>{{ label }}</ion-label>
+  </ion-item>
