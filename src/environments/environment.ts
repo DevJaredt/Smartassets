@@ -1,7 +1,6 @@
 
 export const environment = {
   production: false,
-  
   FIREBASE_CREDENTIALS: {
     apiKey: "AIzaSyDxBY3hb3C0N20QDUVSkJ_gj7tjZyxjXcg",
     authDomain: "bd-assets.firebaseapp.com",
