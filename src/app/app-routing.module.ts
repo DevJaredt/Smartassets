@@ -39,15 +39,10 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'animation',
+    redirectTo: 'principal',
     pathMatch: 'full',
   },
-  {
-    path: 'animation',
-    loadChildren: () => import('./pages/animation/animation.module').then( m => m.AnimationPageModule)
-  },
-
-
+ 
 ];
 
 @NgModule({
