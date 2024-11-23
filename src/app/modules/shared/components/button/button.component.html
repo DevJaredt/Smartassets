@@ -6,6 +6,7 @@
   [expand]="expand"
   [shape]="shape"
   [fill]="fill"
+  (click)="requestion()"
 >
   <ion-icon *ngIf="icon" [name]="icon" [slot]="slot"></ion-icon>
   {{ label }}
