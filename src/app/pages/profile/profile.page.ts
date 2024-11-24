@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { FirestoreCollection } from 'src/app/modules/shared/enums/FirestoreCollection';
 import { Storage } from 'src/app/modules/shared/enums/Storage';
-import { IUpdateUser } from 'src/app/modules/shared/interfaces/IClient';
+import { IUpdateUser } from 'src/app/modules/shared/interfaces/IUser';
 import { AuthService } from 'src/app/modules/shared/services/auth/auth.service';
 import { CameraService } from 'src/app/modules/shared/services/camera/camera.service';
 import { FirestoreService } from 'src/app/modules/shared/services/firestore/firestore.service';

@@ -6,7 +6,8 @@ import {
   FirebaseErrorMessage,
 } from 'src/app/modules/shared/enums/FirebaseError';
 import { ToastMessages } from 'src/app/modules/shared/enums/ToastMessage';
-import { IAuthClient } from 'src/app/modules/shared/interfaces/IClient';
+import { IAuthUSer } from 'src/app/modules/shared/interfaces/IUser';
+
 
 import { AuthService } from 'src/app/modules/shared/services/auth/auth.service';
 import { LoadingService } from 'src/app/modules/shared/services/loading/loading.service';
@@ -37,14 +38,14 @@ export class SignInPage implements OnInit {
   protected async doSignIn() {
     await this._loadingSrv.showLoading('Signing in...');
     try {
-      const authClient: IAuthClient = {
+      const authUser: IAuthUSer= {
         email: this.signInForm.value.email,
         password: this.signInForm.value.password,
       };
 
       await this._authSrv.signInWithEmailAndPassword(
-        authClient.email,
-        authClient.password
+        authUser.email,
+        authUser.password
       );
       await this._navCtr.navigateForward('/home');
       await this._toastSrv.showToast(ToastMessages.SIGN_IN_WITH_SUCCESS);

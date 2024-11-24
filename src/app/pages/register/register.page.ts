@@ -3,9 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirestoreCollection } from 'src/app/modules/shared/enums/FirestoreCollection';
 import { Storage } from 'src/app/modules/shared/enums/Storage';
 import {
-  IAuthClient,
-  ICreateClient,
-} from 'src/app/modules/shared/interfaces/IClient';
+  IAuthUSer,
+  ICreateUser,
+} from 'src/app/modules/shared/interfaces/IUser';
 import { AuthService } from 'src/app/modules/shared/services/auth/auth.service';
 import { FirestoreService } from 'src/app/modules/shared/services/firestore/firestore.service';
 import { LoadingService } from 'src/app/modules/shared/services/loading/loading.service';
@@ -50,27 +50,28 @@ export class RegisterPage implements OnInit {
   protected async doRegister() {
     try {
       await this._loadingSrv.showLoading('Registering...');
-      const authClient: IAuthClient = {
+      const authUser: IAuthUSer = {
         email: this.registerForm.value.email,
         password: this.registerForm.value.password,
       };
 
-      const clientData: ICreateClient = {
+      const clientData: ICreateUser = {
         name: this.registerForm.value.name,
         lastName: this.registerForm.value.lastName,
         age: this.registerForm.value.age,
         phoneNumber: this.registerForm.value.phoneNumber,
         imageUrl: this.imageUrl,
+        role: 'user'
       };
 
       const res = await this._authSrv.register(
-        authClient.email,
-        authClient.password
+        authUser.email,
+        authUser.password
       );
       const userId = res.user?.uid;
 
       await this._firestoreSrv.save(
-        FirestoreCollection.CLIENTS,
+        FirestoreCollection.USERS,
         clientData,
         userId
       );
