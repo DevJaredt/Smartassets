@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { map, Observable } from 'rxjs';
+import { map, Observable, timestamp } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -99,5 +99,14 @@ export class FirestoreService {
     } catch(error) {
       throw new Error(`Error updating state for product ${productId}: ${error}`)
     }
+  }
+
+  public async createLoanRequest(assetId: string, status: string){
+    const requestRef = this._ngFirestore.collection('requests');
+    await requestRef.add({
+      assetId: assetId,
+      status: status,
+      timestamp: new Date(),
+    });
   }
 }

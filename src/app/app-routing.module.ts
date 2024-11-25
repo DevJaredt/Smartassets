@@ -38,10 +38,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/assests/assests.module').then( m => m.AssestsPageModule)
   },
   {
+    path: 'request',
+    loadChildren: () => import('./pages/request/request.module').then( m => m.RequestPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'principal',
     pathMatch: 'full',
   },
+
+
  
 ];
 
