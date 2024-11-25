@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IAsset } from '../../interfaces/IAssests';
+import { IProduct } from '../../interfaces/IProduct';
 
 @Component({
   selector: 'app-card',
@@ -7,7 +7,7 @@ import { IAsset } from '../../interfaces/IAssests';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent  implements OnInit {
-  @Input() asset!: IAsset; 
+  @Input() product!: IProduct; 
   @Input() title!: string;
   @Input() subtitle: string = '';
   @Input() content: string = '';

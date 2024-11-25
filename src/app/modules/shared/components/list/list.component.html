@@ -1,24 +1,23 @@
 <ion-list>
-  <ion-item *ngFor="let asset of assets" lines="full">
+  <ion-item *ngFor="let product of products" lines="full" (click)="onItemClick(product)">
     <ion-label>
-      <h2>{{ asset.name }}</h2>  
-      <p>{{ asset.location }}</p> 
-      <p>Status: {{ asset.state ? 'Lent out' : 'Available' }}</p> 
-      <p>{{ '$' + asset.price }}</p> 
+      <h2>{{ product.name }}</h2>  
+      <p>{{ product.location }}</p> 
+      <p>Status: {{ product.state === 'prestado' ? 'prestado' : 'sin prestar' }}</p> 
+      <p>{{ '$' + product.price }}</p> 
     </ion-label>
     <app-button
-    *ngIf="!asset.state" 
+    *ngIf="product.state !== 'prestado'" 
+    ref="/request"
     label="Request Loan"
-    [disabled]="asset.state" 
     color="primary"
     expand="full"
     shape="round"
     fill="solid"
-    (loanRequest)="onLoanRequest(asset)"
   ></app-button>
   </ion-item>
   
 </ion-list>
-  <ion-item [button]="isClickable" (click)="onItemClick()" lines="full">
+  <ion-item [button]="isClickable" lines="full">
     <ion-label>{{ label }}</ion-label>
   </ion-item>

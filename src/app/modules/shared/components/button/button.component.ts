@@ -23,17 +23,11 @@ export class ButtonComponent {
   @Input() fill: ButtonFill = 'solid';
   @Input() slot!: 'start' | 'end';
 
-  @Output() loanRequest = new EventEmitter<void>();
-
   constructor(private readonly _navSrv: NavigationService) {}
 
   public async navigate() {
     if (this.ref) {
       await this._navSrv.navigateTo(this.ref);
     }
-  }
-
-  public async requestion(){
-    await this.loanRequest.emit();
   }
 }

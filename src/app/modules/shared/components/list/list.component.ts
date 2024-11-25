@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IAsset } from '../../interfaces/IAssests';
+import {  IProduct } from '../../interfaces/IProduct';
 
 @Component({
   selector: 'app-list',
@@ -7,19 +7,15 @@ import { IAsset } from '../../interfaces/IAssests';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent {
-  @Input() assets!: IAsset[];
+  @Input() products!: IProduct[];
   @Input() label!: string;
   @Input() isClickable: boolean = false;
-  @Output() itemClick = new EventEmitter<string>();
-  @Output() loanRequest: EventEmitter<IAsset> = new EventEmitter<IAsset>();
+  @Output() itemClick = new EventEmitter<IProduct>();
 
-  protected onItemClick() {
+  protected onItemClick(product: IProduct) {
     if (this.isClickable) {
-      this.itemClick.emit(this.label);
+      this.itemClick.emit(product);
     }
   }
-
-  onLoanRequest(asset: IAsset) {
-    this.loanRequest.emit(asset);
-  }
+  
 }
