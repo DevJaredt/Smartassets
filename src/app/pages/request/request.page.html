@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>request</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <form [formGroup]="requestForm" class="" (ngSubmit)="submit()">
+      <ion-item>
+        <ion-label>Producto</ion-label>
+        <ion-text>{{ product?.name }}</ion-text>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Ubicación</ion-label>
+        <ion-text>{{ product?.location }}</ion-text>
+      </ion-item>
+  
+      <app-input 
+      type="text"
+      label="user name"
+      [control]="userName"
+      >
+      </app-input>
+
+      <app-input
+      type="text"
+      label="area"
+      [control]="area"
+      >
+      </app-input>
+
+      <app-input
+      type="number"
+      label="duration"
+      [control]="duration"
+      >
+      </app-input>
+
+      <app-button
+      expand="block"
+      type="submit"
+      [disabled]="requestForm.invalid"
+      label="Enviar solicitud"
+      >
+      </app-button>
+    </form>
+</ion-content>
