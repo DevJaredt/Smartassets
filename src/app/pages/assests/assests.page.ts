@@ -19,7 +19,6 @@ import { ToastService } from 'src/app/modules/shared/services/toast/toast.servic
       private readonly _firestoreSrv: FirestoreService,
       private readonly _loadingSrv: LoadingService,
       private readonly _toastSrv: ToastService,
-      private readonly router: Router,
       
     ) { }
 

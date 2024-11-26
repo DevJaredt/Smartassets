@@ -42,13 +42,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/request/request.module').then( m => m.RequestPageModule)
   },
   {
+    path: 'let-items',
+    loadChildren: () => import('./pages/let-items/let-items.module').then( m => m.LetItemsPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'principal',
     pathMatch: 'full',
   },
-
-
- 
 ];
 
 @NgModule({

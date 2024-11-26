@@ -24,19 +24,19 @@ export class FirestoreService {
     }
   }
 
-  public getCollectionDocuments<T>(collection: string): Observable<T[]> {
-    const collectionRef = this._ngFirestore.collection(collection);
+    public getCollectionDocuments<T>(collection: string): Observable<T[]> {
+      const collectionRef = this._ngFirestore.collection(collection);
 
-    return collectionRef.snapshotChanges().pipe(
-      map((snapshot) =>
-        snapshot.map((doc) => {
-          const data = doc.payload.doc.data();
-          const id = doc.payload.doc.id;
-          return { id, ...(data ?? {}) as T};
-        })
-      )
-    );
-  }
+      return collectionRef.snapshotChanges().pipe(
+        map((snapshot) =>
+          snapshot.map((doc) => {
+            const data = doc.payload.doc.data();
+            const id = doc.payload.doc.id;
+            return { id, ...(data ?? {}) as T};
+          })
+        )
+      );
+    }
 
   public getDocumentById(collection: string, documentId: string): Observable<any> {
     const docRef = this._ngFirestore.collection(collection).doc(documentId);
@@ -109,4 +109,5 @@ export class FirestoreService {
       timestamp: new Date(),
     });
   }
+
 }

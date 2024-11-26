@@ -56,6 +56,13 @@ export class RequestPage implements OnInit {
   
         await this._firestoreSrv.save('requests', requestData);
         console.log("Solicitud guardada exitosamente");
+
+        this.requestForm.reset({
+          userName: '',
+          area: '',
+          duration: '',
+          status: 'pendiente'
+        });
       } catch (error) {
         console.error("Error al guardar solicitud:", error);
       } finally {

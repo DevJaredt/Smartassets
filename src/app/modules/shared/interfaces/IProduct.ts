@@ -5,5 +5,6 @@ export interface IProduct {
     location: string,
     name: string,
     price: number,
-    state: string
+    state: string,
+    borrewedBy: string
 }

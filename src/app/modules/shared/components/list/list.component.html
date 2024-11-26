@@ -1,5 +1,7 @@
 <ion-list>
-  <ion-item *ngFor="let product of products" lines="full" (click)="onItemClick(product)">
+  <ion-item *ngFor="let product of products" lines="full" (click)="onItemClick(product)" [ngClass]="{'disabled-item': product.state === 'prestado'}"
+  [attr.disabled]="product.state === 'prestado' ? true : null"
+  >
     <ion-label>
       <h2>{{ product.name }}</h2>  
       <p>{{ product.location }}</p> 
@@ -7,8 +9,8 @@
       <p>{{ '$' + product.price }}</p> 
     </ion-label>
     <app-button
-    *ngIf="product.state !== 'prestado'" 
-    (click)="onItemClick(product  )"
+    *ngIf="product.state !== 'prestado' && product.state !== 'pendiente'" 
+    (click)="onItemClick(product)"
     label="Request Loan"
     color="primary"
     expand="full"
