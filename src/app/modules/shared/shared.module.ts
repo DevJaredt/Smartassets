@@ -6,7 +6,6 @@ import { ButtonComponent } from './components/button/button.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SheetModalComponent } from './components/sheet-modal/sheet-modal.component';
 import { CardModalComponent } from './components/card-modal/card-modal.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RefresherComponent } from './components/refresher/refresher.component';
@@ -34,7 +33,6 @@ const MODULES = [
 const COMPONENTS = [
   TabsComponent,
   ButtonComponent,
-  SheetModalComponent,
   CardModalComponent,
   HeaderComponent,
   RefresherComponent,
@@ -44,8 +42,7 @@ const COMPONENTS = [
   ThumbnailComponent,
   CardComponent,
   SegmentComponent,
-  SheetModalComponent,
-  CalendarComponent
+  CalendarComponent,
 ];
 
 const PROVIDERS = [

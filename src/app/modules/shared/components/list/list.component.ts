@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {  IProduct } from '../../interfaces/IProduct';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-list',
@@ -12,9 +13,12 @@ export class ListComponent {
   @Input() isClickable: boolean = false;
   @Output() itemClick = new EventEmitter<IProduct>();
 
+  constructor(private readonly router: Router) {}
+
   protected onItemClick(product: IProduct) {
     if (this.isClickable) {
       this.itemClick.emit(product);
+      this.router.navigate(['/request'], { state: { product } });
     }
   }
   

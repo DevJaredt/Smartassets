@@ -8,7 +8,7 @@
     </ion-label>
     <app-button
     *ngIf="product.state !== 'prestado'" 
-    ref="/request"
+    (click)="onItemClick(product  )"
     label="Request Loan"
     color="primary"
     expand="full"
