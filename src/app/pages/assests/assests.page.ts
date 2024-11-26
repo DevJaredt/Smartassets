@@ -19,7 +19,8 @@ import { ToastService } from 'src/app/modules/shared/services/toast/toast.servic
       private readonly _firestoreSrv: FirestoreService,
       private readonly _loadingSrv: LoadingService,
       private readonly _toastSrv: ToastService,
-      private readonly router: Router
+      private readonly router: Router,
+      
     ) { }
 
     ngOnInit() {
@@ -40,10 +41,6 @@ import { ToastService } from 'src/app/modules/shared/services/toast/toast.servic
       } catch (error) {
         console.error('error to load', error);
       }
-    }
-    public async goToRequestPage(product: IProduct) {
-      console.log('Navigating with product:', product); 
-      await this.router.navigate(['/request'], { state: { product } }); 
     }
 
   }
